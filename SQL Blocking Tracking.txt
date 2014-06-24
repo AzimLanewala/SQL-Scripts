@@ -1,0 +1,46 @@
+select * from sys.sysprocesses where blocked <> 0 AND spid <> blocked AND spid > 50
+
+select * from sys.sysprocesses where spid > 50 
+--and loginame = 'PROD\T002191'
+order by physical_io DESC, cpu desc
+
+--sp_who2 '2536'
+
+-- To check which all the porcess are running.
+USE Master
+GO
+EXEC sp_who2 '76'
+GO
+
+-- For check for locking
+exec sp_lock
+
+exec sp_leadblocker
+
+DBCC INPUTBUFFER(232)
+
+--KILL 76
+
+-- Percetage Completion
+SELECT percent_complete, 
+       ( estimated_completion_time / 1000 ) / 60 Estimated_completion_time_Mins, 
+       ( total_elapsed_time / 1000 ) / 60        Total_Elapsed_Time_Mins, 
+       Db_name(Database_id)                      DBName, 
+       * 
+FROM   sys.dm_exec_requests 
+WHERE  session_id = 'id which is doing the operation'  
+
+-- sp_readerrorlog
+
+
+-- SQL Physical intance name and related VERSION , SERVER Name , Machine Name
+
+/*
+
+Select	   Serverproperty( 'ComputerNamePhysicalNetBIOS' )	as ComputerNamePhysicalNetBIOS 
+		 , Serverproperty( 'InstanceName' ) 				as InstanceName 
+		 , Serverproperty( 'IsClustered' )  				as IsClustered 
+		 , Serverproperty( 'MachineName' )					as MachineName 
+		 , Serverproperty( 'ServerName' )					as ServerName 
+		 , Serverproperty('edition')						as	Edition
+/*
