@@ -1,0 +1,61 @@
+SQL-Scripts
+===========
+
+SQL Scripts
+/*
+-- xp_fixeddrives
+
+-- sp_helpdb
+*/
+set NoCount ON
+go
+Declare @DRIVE varchar(1)
+set @DRIVE = 'G%'
+
+Create table ##Tmp_Table_Data (
+	  DBName varchar(100)
+	, Name varchar(100)
+	, Filename varchar(500)
+	, TotalMB numeric (18, 2)
+	, UsedMB numeric (18, 2)
+	, FreeMB numeric (18, 2)
+	, Growth varchar(50)
+	)
+
+Declare @DBName varchar(100)
+, @str varchar(2000)
+
+
+Declare C1 cursor
+for
+Select Name from master..SysDatabases Where Upper(Name) not in ('MASTER', 'MODEL', 'MSDB') and 
+	Has_DBAccess(Name) = 1 Order By Name
+
+Open C1
+Fetch next from C1 into @DBName
+
+while (@@Fetch_Status = 0)
+Begin
+	set @Str = 'use [' + @DBName + ']' + char(13) + 'Insert into ##Tmp_Table_Data Select ''' + @DBName + ''',name, filename '
+		+ char(13) + ', size*8.0*1024/(1024*1024) '
+		+ char(13) + ', fileproperty(name,''SpaceUsed'')*8.0*1024/(1024*1024) '
+		+ char(13) + ', size*8.0*1024/(1024*1024) - fileproperty(name,''SpaceUsed'')*8.0*1024/(1024*1024) '
+		+ char(13) + ',''growth''= (case status & 0x100000 when 0x100000 then'
+		+ char(13) + 'convert(nvarchar(15), growth) + N''%'''
+		+ char(13) + 'else'
+		+ char(13) + 'convert(nvarchar(15), convert (bigint, growth) * 8) + N''KB'' end)'
+		+ char(13) + 'from sysfiles '
+		+ char(13) + 'where (status & 0x2) <> 0 and filename like ''' + @DRIVE + ':%'''
+
+	exec (@Str)	
+--PRINT @STR
+	Fetch next from C1 into @DBName
+End
+Close C1
+Deallocate C1
+
+select * from ##Tmp_Table_Data order by FreeMB Desc
+Drop table ##Tmp_Table_Data
+go
+set NoCount OFF
+go
