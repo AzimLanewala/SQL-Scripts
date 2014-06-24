@@ -1,0 +1,28 @@
+EXEC xp_logininfo 'prod\T002216'
+EXEC xp_logininfo 'prod\T002657'
+select * from YOUR_DB_NAME.dbo.USERS 
+WHERE ACTIVE_FLAG = 1
+--where OS_LOGON like '%rwhelto%'
+
+-- exec sp_change_users_login auto_fix username
+
+--EXEC master..xp_logininfo 
+--  @acctname = 'prod\rwhelto',
+--  @option = 'all' -- Show all paths a user gets his auth from
+--go
+
+EXEC master..xp_logininfo 
+  @acctname = 'YOUR_USER_GROUP_NAME',
+  @option = 'members'     -- show group members
+
+exec sp_change_users_login 'PROD\T002216'
+
+
+select *
+from sys.database_principals u 
+inner join sys.database_role_members ur 
+    on u.principal_id = ur.member_principal_id 
+inner join sys.database_principals r 
+    on ur.role_principal_id = r.principal_id 
+--where r.name = @role_name 
+--and u.name = @username
