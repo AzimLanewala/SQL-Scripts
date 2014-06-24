@@ -1,0 +1,29 @@
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT *
+  FROM [master].[dbo].[YOUR_JOB_NAME_databases]
+  where Databaseid in (24,8,16,15,18,19,23) 
+  
+/*
+
+1) MAKE THE MASTER ENTRY TO BE DEPRICATED FOR PERTICLUAR DB
+2) DELETE THE JOB STEP FROM Restore All Databases AND Restore Failed Databases
+3) DELETE THE BACKUP DEVICE FROM THE SAME ON PERTICLUAR MACHINE
+4) DELETE THE DATABASE FROM THE PERTICLAR ENVIORNMENT
+5) 
+
+*/  
+
+/*
+UPDATE [master].[dbo].[YOUR_JOB_NAME_databases]
+SET 
+	[PhysicalName]		= '* Deprecated'
+	,[Server]			= NULL
+	,[DatabaseDir]		= NULL
+	,[LogFileDir]		= NULL
+	,[SystemLogDir]		= NULL
+	,[BackupImageDir]	= NULL
+	,[AllowRestore]		= 0
+	,[LastRestored]		= NULL	
+WHERE DatabaseID = 24	
+
+*/
