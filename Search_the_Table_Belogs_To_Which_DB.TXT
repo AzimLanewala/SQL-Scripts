@@ -1,0 +1,5 @@
+SELECT name 
+FROM   sys.databases 
+WHERE  CASE 
+         WHEN state_desc = 'ONLINE' THEN Object_id(Quotename(name) + '.[dbo].[YOUR_TABLE_NAME]', 'U') 
+       END IS NOT NULL
