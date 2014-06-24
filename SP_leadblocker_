@@ -1,0 +1,59 @@
+USE [master]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_leadblocker]    Script Date: 06/24/2014 12:14:48 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_leadblocker]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[sp_leadblocker]
+GO
+
+USE [master]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_leadblocker]    Script Date: 06/24/2014 12:14:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+/**********************************************************************************************
+$Revision: 1 $
+$Workfile: sp_leadblocker.sql $
+$Date: 16/04/10 13:44 $
+Desc: Highlights the lead processes in a blocking chain
+**********************************************************************************************/
+
+CREATE PROCEDURE [dbo].[sp_leadblocker]
+
+AS
+
+PRINT 'Lead Blocker For SQL 2008 v1.0 ©2010 LexAutolease'
+PRINT ''
+
+IF EXISTS ( SELECT 1 FROM master.dbo.sysprocesses WHERE blocked <> 0 )
+	SELECT  spid,  
+			status,  
+			loginame   = SUBSTRING(loginame, 1, 30),  
+			hostname   = SUBSTRING(hostname, 1, 12),  
+			blk        = CONVERT(char(4), blocked),  
+			open_tran,  
+			dbname     = SUBSTRING(DB_NAME(dbid),1,10),  
+			cmd,  
+			waittype,  
+			waittime,  
+			last_batch  
+	FROM master.dbo.sysprocesses  NOLOCK
+	WHERE spid IN (SELECT blocked FROM master.dbo.sysprocesses)  
+	AND blocked = 0 
+ELSE
+	SELECT 'No blocking found!'	
+
+
+
+
+
+GO
+
+
