@@ -1,0 +1,34 @@
+WITH objects(name, id)
+     AS (SELECT 'up_sub_systems_d_bypk', 23671132 UNION ALL
+         SELECT 'up_sub_systems_d_bypk', 37575172) SELECT 'Using Id and Name',
+       sys.databases.name,
+       objects.name
+FROM   sys.databases,
+       objects
+WHERE  OBJECT_NAME(id, database_id) = objects.name
+UNION ALL
+SELECT 'Using Name (assumes default schema)',
+       sys.databases.name,
+       objects.name
+FROM   sys.databases,
+       objects
+WHERE  OBJECT_ID(databases.name + '..up_sub_systems_d_bypk', 'P') IS NOT NULL 
+
+/*
+P = SQL Stored Procedure
+V = View
+F = FOREIGN KEY constraint
+U = Table (user-defined)
+PK = PRIMARY KEY constraint
+FN = SQL scalar function
+FS = Assembly (CLR) scalar-function
+FT = Assembly (CLR) table-valued function
+*/
+
+--SELECT * FROM sys.objects
+
+SELECT ROUTINE_NAME, ROUTINE_DEFINITION 
+FROM INFORMATION_SCHEMA.ROUTINES 
+WHERE ROUTINE_DEFINITION LIKE '%WITH (INDEX (%' 
+AND ROUTINE_TYPE='FUNCTION'
+ORDER BY ROUTINE_NAME
