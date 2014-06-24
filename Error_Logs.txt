@@ -1,0 +1,8 @@
+EXEC sp_readerrorlog
+
+
+--List all the process runnning on the perticluar instance..
+sp_helpdb 
+
+--
+exec sp_who2
