@@ -1,0 +1,4 @@
+sqlcmd -S SERVER_NAME -d YOUR_DB_NAME -E -Q "SELECT * FROM msdb.dbo.sysjobs" -b
+GO
+sqlcmd -S SERVER_NAME -d YOUR_DB_NAME -E -Q "SELECT * FROM msdb.dbo.sysjobs" -b
+GO
