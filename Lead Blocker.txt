@@ -1,0 +1,11 @@
+use master
+--exec sp_leadblocker  
+
+exec xp_readerrorlog
+
+USE msdb
+GO
+SELECT * FROM backupset WHERE backup_start_date >= '2013-10-25 22:45:18.000'
+ORDER BY backup_start_date DESC
+
+SELECT * FROM backupfile
