@@ -1,0 +1,7 @@
+SQL-Scripts
+===========
+
+SQL Scripts
+
+USE msdb
+SELECT * FROM dbo.sysjobs WHERE name LIKE '%YOUR_JOB_NAME%'
