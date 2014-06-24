@@ -1,0 +1,74 @@
+USE SSISCONFIGURATION	 
+
+/****** Script for SelectTopNRows command from SSMS  ssisconfiguration ******/ 
+
+SELECT *  FROM [ssisconfiguration].[dbo].[SSIS_PACKAGES]
+  WHERE PACKAGE_ID = 10137
+
+SELECT *  FROM [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+  WHERE PACKAGE_ID = 10137
+
+--SELECT *  FROM [ssisconfiguration].[dbo].[SSIS_PACKAGES]
+--  WHERE PACKAGE_ID = 10038
+
+--SELECT *  FROM [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+--  WHERE PACKAGE_ID = 10038
+  
+--DELETE FROM [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS] WHERE PACKAGE_ID = 10137  
+  
+ --update [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+ --set PARAMETER_VALUE = '\\resdvafdbhx001\Appshare\DEV1\SSIS Packages\Import Data\VR Dehire\'  
+ --where PACKAGE_ID = 10137 and PARAMETER_ID = 1
+ -- \\resdvafdbhx001\Appshare\DEV1\SSIS Packages\Import Data\
+ 
+ 
+ --update [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+ --set PARAMETER_VALUE = '\\resdvafdbhx001\devshare\DatabaseChanges\SQ Clean Up VSS Window\' 
+ --where PACKAGE_ID = 10137 and PARAMETER_ID = 3
+ 
+ -- update [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+ --set PARAMETER_VALUE = 'SQLDBHX010\DEV1'  
+ --where PACKAGE_ID = 10137 and PARAMETER_ID = 1 
+
+ 
+--INSERT INTO  [ssisconfiguration].[dbo].[SSIS_PACKAGES]
+--VALUES (10137,'ICME Upload','ICME Upload') 
+
+--INSERT INTO  [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+--VALUES (10137,1,'DestinationFileMontlyWeekly',0,'MON')
+
+--INSERT INTO  [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+--VALUES (10137,2,'TargetDatabase',0,'PRDLCON')
+
+--INSERT INTO  [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+--VALUES (10137,3,'ImportFilePath',0,'\\dfslbhxv01\shared\Global\IT\Ops\Batch\ICME\ICME_REP_TIMES.TXT')
+
+--INSERT INTO  [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+--VALUES (10137,4,'DestinationDatabase',0,'BO_ISIS_TEST')
+
+
+--INSERT INTO  [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS]
+--VALUES (10137,6,'TriggerDatabase',0,'PRDNBUS')
+
+
+ --UPDATE [SSISCONFIGURATION].[DBO].[SSIS_PACKAGE_PARAMETERS]
+ --SET PARAMETER_VALUE = 'WEK'  
+ --WHERE PACKAGE_ID = 10122 AND PARAMETER_ID = 6
+
+-- UPDATE ssisconfiguration.dbo.SSIS_PACKAGE_PARAMETERS 
+--SET PARAMETER_VALUE = 'azim.lanewala@lexautolease.co.uk'
+--WHERE PARAMETER_ID =  AND PACKAGE_ID = 10137
+
+--UPDATE ssisconfiguration.dbo.SSIS_PACKAGE_PARAMETERS 
+--SET PARAMETER_VALUE = 'BO_FINANCE_TEST'
+--WHERE PARAMETER_ID = 4 AND PACKAGE_ID  = 10137
+
+--UPDATE ssisconfiguration.dbo.SSIS_PACKAGE_PARAMETERS 
+--SET PARAMETER_VALUE = '\\resdvafdbhx001\Appshare\QA2\SSIS Packages\Extract Data\'
+--WHERE PARAMETER_ID = 3   AND PACKAGE_ID = 10021
+
+--\\resdvafdbhx001\Appshare\RUN1\SSIS Packages\QRM\
+
+--SELECT PARAMETER_VALUE AS SourceServer FROM SSISCONFIGURATION.dbo.SSIS_PACKAGE_PARAMETERS WHERE PACKAGE_ID = 10137 AND PARAMETER_ID = 1
+--SELECT *  FROM [ssisconfiguration].[dbo].[SSIS_PACKAGE_PARAMETERS] WHERE PACKAGE_ID = 10137
+
