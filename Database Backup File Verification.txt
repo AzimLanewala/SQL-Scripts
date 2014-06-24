@@ -1,0 +1,6 @@
+SQL-Scripts
+===========
+
+SQL Scripts
+RESTORE VERIFYONLY
+FROM disk = 'Path for the database backup'
