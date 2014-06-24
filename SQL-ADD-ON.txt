@@ -1,0 +1,22 @@
+--- FREE ADD-ON (PLUGIN) TOOLS FOR SQL SERVER
+
+/**************************************
+SQL BEAUTIFIER
+http://www.dpriver.com/products/sqlpp/ssms_index.php
+
+*****************************************/
+
+/**************************************
+ADD ON FOR SQL SERVER SEARCH FREE TOOL
+
+http://www.red-gate.com/products/sql-development/sql-search/
+
+*****************************************/
+
+/**************************************
+FOR MULTI-SERVER SCRIPT DEPLOYMENT 
+
+USE REGISTER SERVER WITH THE FOLDERS NAMED FOR ENVIRONMENT SO 
+IT WILL DEPLOY IT IN ALL THE ENVIRONMENT
+
+*****************************************/
