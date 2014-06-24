@@ -1,0 +1,7 @@
+ SELECT 'IF  EXISTS (SELECT * FROM sys.indexes WHERE name = "' + SI.name + '" and object_id = OBJECT_ID(N"''[dbo].['+ st.name + ']")) '  /*,*/ + CHAR(13) +
+       'EXEC sp_rename N'+ + '"'+ 'dbo.' + st.name+'.'+ SI.name +'",N' +'"' +'PK_'+st.name + ''''+    + ', N''INDEX' +'"' + CHAR(13) +
+       'Go'
+FROM sys.tables st
+join sys.indexes SI
+ON st.object_id = SI.object_id 
+WHERE OBJECTPROPERTY(st.object_id,'IsIndexed') = 1 and SI.name like 'PK%'
