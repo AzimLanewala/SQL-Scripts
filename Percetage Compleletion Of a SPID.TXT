@@ -1,0 +1,7 @@
+SELECT percent_complete, 
+       ( estimated_completion_time / 1000 ) / 60 Estimated_completion_time_Mins, 
+       ( total_elapsed_time / 1000 ) / 60        Total_Elapsed_Time_Mins, 
+       Db_name(Database_id)                      DBName, 
+       * 
+FROM   sys.dm_exec_requests 
+WHERE  session_id = 'id which is doing the operation'  
