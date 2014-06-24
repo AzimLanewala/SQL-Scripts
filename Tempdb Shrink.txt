@@ -1,0 +1,3 @@
+use tempdb
+DBCC SHRINKFILE(templog, 85000);
+
