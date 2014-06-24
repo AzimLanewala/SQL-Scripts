@@ -1,0 +1,33 @@
+/**************************************
+Add on for SQL Server Search free tool
+
+http://www.red-gate.com/products/sql-development/sql-search/
+
+*****************************************/
+use imscan
+--SELECT OBJECT_NAME(object_id)
+--FROM sys.sql_modules
+--WHERE definition LIKE '%upr_RAC_Extract%' 
+
+SELECT Name
+FROM sys.procedures
+WHERE OBJECT_DEFINITION(OBJECT_ID) LIKE '%IX_COMPOSITE_%'
+
+SELECT Name as [Stored Procedure Name]
+FROM sys.procedures
+WHERE OBJECT_DEFINITION(OBJECT_ID) LIKE '%RAC_Extract%'
+--AND OBJECT_DEFINITION(OBJECT_ID) LIKE '%Code%'
+
+select  * --object_name(id) 
+from syscomments 
+where text like '%@@identity%'
+order by object_name(id) 
+
+
+SELECT m.definition
+		,o.name
+FROM sys.sql_modules m 
+INNER JOIN sys.objects o 
+ON m.object_id=o.object_id
+WHERE m.definition Like '%@@identity%'
+order by o.name asc
